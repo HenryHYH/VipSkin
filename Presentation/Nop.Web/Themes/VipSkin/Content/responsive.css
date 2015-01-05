@@ -12,7 +12,6 @@
     .master-wrapper-main .center-2 { width: auto; margin-left: 180px; float: none; display: table; }
     .master-wrapper-main .center-3 { width: auto; margin: 0 190px; float: none; display: block; }
     /* HEADER AND MENU */
-    .header .icon-welcome { display: none !important; }
     .header .hotline { display: none !important; }
     .flyout-cart { display: none !important; }
     /* PRODUCT DETAILS PAGE */

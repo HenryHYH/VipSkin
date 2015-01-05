@@ -5,9 +5,7 @@
 }
 @using (Html.BeginRouteForm("ProductSearch", FormMethod.Get, new { onsubmit = "return check_small_search_form()" }))
 {
-    <div class="search-box-wapper">
-        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" value="@searchTooltip" name="q" />
-    </div>
+    <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" value="@searchTooltip" name="q" />
     @Html.Widget("searchbox_before_search_button")
     <input type="submit" class="button-1 search-box-button" value="@T("Search")" />
     <script type="text/javascript">
@@ -40,8 +38,8 @@
     {
         <text>
             <script type="text/javascript">
-                $(function() {
-                    $('#small-searchterms').autocomplete({
+                $(function () {
+                    var autocomplete = $('#small-searchterms').autocomplete({
                         delay: 500,
                         minLength: @(Model.SearchTermMinimumLength.ToString()),
                         source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',
@@ -50,16 +48,19 @@
                             setLocation(ui.item.producturl);
                             return false;
                         }
-                    })
-                        .data("ui-autocomplete")._renderItem = function(ul, item) {
-                            var t = item.label;
-                            //html encode
-                            t = htmlEncode(t);
-                            return $("<li></li>")
-                                .data("item.autocomplete", item)
-                                .append("<a>@(Model.ShowProductImagesInSearchAutoComplete ? Html.Raw("<img src='\" + item.productpictureurl + \"'>") : null)" + t + "</a>")
-                            .appendTo(ul);
-                        };
+                    }).data("ui-autocomplete");
+                    autocomplete._resizeMenu = function() {
+                        this.menu.element.outerWidth(210);
+                    };
+                    autocomplete._renderItem = function(ul, item) {
+                        var t = item.label;
+                        //html encode
+                        t = htmlEncode(t);
+                        return $("<li></li>")
+                            .data("item.autocomplete", item)
+                            .append("<a>@(Model.ShowProductImagesInSearchAutoComplete ? Html.Raw("<img src='\" + item.productpictureurl + \"'>") : null)" + t + "</a>")
+                        .appendTo(ul);
+                    };
                 });
             </script>
         </text>

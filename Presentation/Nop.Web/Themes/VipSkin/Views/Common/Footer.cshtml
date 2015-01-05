@@ -116,7 +116,9 @@
         </div>
     }
     <div class="footer-disclaimer">
-        @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreCompanyName)<br />
+        <p>
+            @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreCompanyName)
+        </p>
         @Html.Action("TopicBody", "Topic", new { systemName = "FooterDisclaimer" })
     </div>
     <div class="footer-store-theme">

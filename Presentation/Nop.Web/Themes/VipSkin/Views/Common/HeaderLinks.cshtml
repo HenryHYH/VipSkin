@@ -9,7 +9,6 @@
 <div class="header-links">
     <ul>
         @Html.Widget("header_links_before")
-        <li><a href="@Url.RouteUrl("HomePage")" class="icon-welcome">@T("Account.Welcome")@(storeName)</a></li>
         @if (Model.IsAuthenticated)
         {
             <li><a href="@Url.RouteUrl("CustomerInfo")" class="account">@Model.CustomerEmailUsername</a></li>
