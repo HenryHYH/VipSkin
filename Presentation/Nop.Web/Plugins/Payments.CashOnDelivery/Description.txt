@@ -1,0 +1,8 @@
+﻿Group: Payment methods
+FriendlyName: 货到付款
+SystemName: Payments.CashOnDelivery
+Version: 1.13
+SupportedVersions: 3.50
+Author: nopCommerce team
+DisplayOrder: 1
+FileName: Nop.Plugin.Payments.CashOnDelivery.dll

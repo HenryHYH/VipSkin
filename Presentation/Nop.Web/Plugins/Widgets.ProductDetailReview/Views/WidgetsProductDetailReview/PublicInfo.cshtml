@@ -1,0 +1,76 @@
+﻿@model Nop.Plugin.Widgets.ProductDetailReview.Models.PublicInfoModel
+@{
+    Layout = "";
+    var totalReviews = Model.Items.Count;
+    var list = Model.Items
+        .OrderByDescending(x => x.Rating)
+        .ThenByDescending(x => x.Helpfulness.HelpfulYesTotal)
+        .Take(5);
+}
+@using Nop.Web.Framework
+@using Nop.Web.Framework.UI
+@using Nop.Web.Framework.UI.Captcha
+
+@if (Model.AllowCustomerReviews)
+{
+    <div class="product-review-list">
+        @if (totalReviews > 0)
+        {
+            <div class="title">
+                <strong>@T("Reviews.ExistingReviews")</strong>
+                <div class="product-review-links-right">
+                    <a href="@Url.RouteUrl("ProductReviews", new { productId = Model.ProductId })">
+                        @totalReviews
+                        @T("Reviews.Overview.Reviews")
+                    </a>
+                    <span class="separator">|</span>
+                    <a href="@Url.RouteUrl("ProductReviews", new { productId = Model.ProductId })">
+                        @T("Reviews.Overview.AddNew")
+                    </a>
+                </div>
+            </div>
+            foreach (var review in list)
+            {
+                int ratingPercent = review.Rating * 20;
+                <div class="product-review-item">
+                    <div class="review-item-head">
+                        <div class="review-title">
+                            <strong>@review.Title</strong>
+                        </div>
+                        <div class="product-review-box">
+                            <div class="rating">
+                                <div style="width:@(ratingPercent)%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(review.ReviewText, false, true, false, false, false, false))
+                    </div>
+                    <div class="review-info">
+                        <span class="user">
+                            <strong>@T("Reviews.From"):</strong>
+                            @if (review.AllowViewingProfiles)
+                        {
+                        <a href="@Url.RouteUrl("CustomerProfile", new {id= review.CustomerId})">@(review.CustomerName)</a>
+                        }
+                        else
+                        {
+                        @review.CustomerName
+                        }
+                        </span>
+                        <span class="separator">|</span>
+                        <span class="date">
+                            <strong>@T("Reviews.Date"):</strong>
+                            @review.WrittenOnStr
+                        </span>
+                    </div>
+                    @Html.Partial("~/Plugins/Widgets.ProductDetailReview/Views/WidgetsProductDetailReview/_ProductReviewHelpfulness.cshtml", review.Helpfulness, new ViewDataDictionary())
+                </div>
+            }
+        }
+        else
+        {
+            <a class="button-1" href="@Url.RouteUrl("ProductReviews", new { productId = Model.ProductId })">@T("Reviews.Overview.First")</a>
+        }
+    </div>
+}

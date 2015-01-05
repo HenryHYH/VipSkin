@@ -1,0 +1,59 @@
+﻿@model ProductDetailsModel
+@using Nop.Core.Domain.Media
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Catalog;
+@{
+    Html.AddScriptParts("~/Scripts/jquery.magnific-popup.js");
+    Html.AddCssFileParts("~/Content/magnific-popup/magnific-popup.css");
+
+    Html.AddScriptParts("~/Scripts/jquery.jqzoom.min.js");
+    Html.AddCssFileParts("~/Content/jqzoom/jquery.jqzoom.css");
+
+    int productPerRow = EngineContext.Current.Resolve<MediaSettings>().ProductThumbPerRowOnProductDetailsPage;
+}
+<div class="gallery">
+    <div class="picture">
+        <a href="@Model.DefaultPictureModel.FullSizeImageUrl" title="@Model.Name" id="main-product-img-lightbox-anchor-@Model.Id" rel="img-@Model.Id">
+            <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" itemprop="image" id="main-product-img-@Model.Id" />
+        </a>
+        @if (Model.DefaultPictureZoomEnabled)
+        {
+            <script type="text/javascript">
+                $(function () {
+                    $("#main-product-img-lightbox-anchor-@Model.Id").jqzoom({
+                        zoomType: 'standard',
+                        preloadImages: false,
+                        alwaysOn: false,
+                        zoomWidth: 400,
+                        zoomHeight: 400,
+                        title: false
+                    });
+                });
+            </script>
+        }
+    </div>
+    @if (Model.PictureModels.Count > 1)
+    {
+        <div class="picture-thumbs">
+            @for (int i = 0; i < Model.PictureModels.Count; i++)
+            {
+                var picture = Model.PictureModels[i];
+
+                if (i % productPerRow == 0)
+                {
+                    @Html.Raw("<div>")
+                }
+                <a class="thumb-popup-link @if(0==i){@Html.Raw("zoomThumbActive")}" href="javascript:void(0);" title="@Model.Name"
+                   rel="{gallery: 'img-@Model.Id', smallimage: '@picture.DefaultImageUrl', largeimage: '@picture.FullSizeImageUrl'}">
+                    <img src="@picture.ImageUrl" alt="@picture.AlternateText" title="@picture.Title" />
+                </a>
+                if ((i % productPerRow == (productPerRow - 1)) ||
+                    //last image
+                    (i == (Model.PictureModels.Count - 1)))
+                {
+                    @Html.Raw("</div>")
+                }
+            }
+        </div>
+    }
+</div>

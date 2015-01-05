@@ -1,0 +1,7 @@
+﻿@model TopicModel
+@using Nop.Web.Models.Topics
+
+@if (!Model.IsPasswordProtected)
+{
+    @Html.Raw(Model.Body)
+}
