@@ -23,7 +23,7 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
 
         public WidgetsNivoSliderController(IWorkContext workContext,
             IStoreContext storeContext,
-            IStoreService storeService, 
+            IStoreService storeService,
             IPictureService pictureService,
             ISettingService settingService,
             ICacheManager cacheManager,
@@ -63,36 +63,46 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             model.Picture1Id = nivoSliderSettings.Picture1Id;
             model.Text1 = nivoSliderSettings.Text1;
             model.Link1 = nivoSliderSettings.Link1;
+            model.BgColor1 = nivoSliderSettings.BgColor1;
             model.Picture2Id = nivoSliderSettings.Picture2Id;
             model.Text2 = nivoSliderSettings.Text2;
             model.Link2 = nivoSliderSettings.Link2;
+            model.BgColor2 = nivoSliderSettings.BgColor2;
             model.Picture3Id = nivoSliderSettings.Picture3Id;
             model.Text3 = nivoSliderSettings.Text3;
             model.Link3 = nivoSliderSettings.Link3;
+            model.BgColor3 = nivoSliderSettings.BgColor3;
             model.Picture4Id = nivoSliderSettings.Picture4Id;
             model.Text4 = nivoSliderSettings.Text4;
             model.Link4 = nivoSliderSettings.Link4;
+            model.BgColor4 = nivoSliderSettings.BgColor4;
             model.Picture5Id = nivoSliderSettings.Picture5Id;
             model.Text5 = nivoSliderSettings.Text5;
             model.Link5 = nivoSliderSettings.Link5;
+            model.BgColor5 = nivoSliderSettings.BgColor5;
             model.ActiveStoreScopeConfiguration = storeScope;
             if (storeScope > 0)
             {
                 model.Picture1Id_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Picture1Id, storeScope);
                 model.Text1_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Text1, storeScope);
                 model.Link1_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Link1, storeScope);
+                model.BgColor1_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.BgColor1, storeScope);
                 model.Picture2Id_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Picture2Id, storeScope);
                 model.Text2_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Text2, storeScope);
                 model.Link2_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Link2, storeScope);
+                model.BgColor2_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.BgColor2, storeScope);
                 model.Picture3Id_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Picture3Id, storeScope);
                 model.Text3_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Text3, storeScope);
                 model.Link3_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Link3, storeScope);
+                model.BgColor3_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.BgColor3, storeScope);
                 model.Picture4Id_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Picture4Id, storeScope);
                 model.Text4_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Text4, storeScope);
                 model.Link4_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Link4, storeScope);
+                model.BgColor4_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.BgColor4, storeScope);
                 model.Picture5Id_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Picture5Id, storeScope);
                 model.Text5_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Text5, storeScope);
                 model.Link5_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.Link5, storeScope);
+                model.BgColor5_OverrideForStore = _settingService.SettingExists(nivoSliderSettings, x => x.BgColor5, storeScope);
             }
 
             return View("~/Plugins/Widgets.NivoSlider/Views/WidgetsNivoSlider/Configure.cshtml", model);
@@ -109,18 +119,23 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             nivoSliderSettings.Picture1Id = model.Picture1Id;
             nivoSliderSettings.Text1 = model.Text1;
             nivoSliderSettings.Link1 = model.Link1;
+            nivoSliderSettings.BgColor1 = model.BgColor1;
             nivoSliderSettings.Picture2Id = model.Picture2Id;
             nivoSliderSettings.Text2 = model.Text2;
             nivoSliderSettings.Link2 = model.Link2;
+            nivoSliderSettings.BgColor2 = model.BgColor2;
             nivoSliderSettings.Picture3Id = model.Picture3Id;
             nivoSliderSettings.Text3 = model.Text3;
             nivoSliderSettings.Link3 = model.Link3;
+            nivoSliderSettings.BgColor3 = model.BgColor3;
             nivoSliderSettings.Picture4Id = model.Picture4Id;
             nivoSliderSettings.Text4 = model.Text4;
             nivoSliderSettings.Link4 = model.Link4;
+            nivoSliderSettings.BgColor4 = model.BgColor4;
             nivoSliderSettings.Picture5Id = model.Picture5Id;
             nivoSliderSettings.Text5 = model.Text5;
             nivoSliderSettings.Link5 = model.Link5;
+            nivoSliderSettings.BgColor5 = model.BgColor5;
 
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
@@ -129,52 +144,67 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Picture1Id, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Picture1Id, storeScope);
-            
+
             if (model.Text1_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Text1, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Text1, storeScope);
-            
+
             if (model.Link1_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Link1, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Link1, storeScope);
-            
+
+            if (model.BgColor1_OverrideForStore || storeScope == 0)
+                _settingService.SaveSetting(nivoSliderSettings, x => x.BgColor1, storeScope, false);
+            else if (storeScope > 0)
+                _settingService.DeleteSetting(nivoSliderSettings, x => x.BgColor1, storeScope);
+
             if (model.Picture2Id_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Picture2Id, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Picture2Id, storeScope);
-            
+
             if (model.Text2_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Text2, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Text2, storeScope);
-            
+
             if (model.Link2_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Link2, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Link2, storeScope);
-            
+
+            if (model.BgColor2_OverrideForStore || storeScope == 0)
+                _settingService.SaveSetting(nivoSliderSettings, x => x.BgColor2, storeScope, false);
+            else if (storeScope > 0)
+                _settingService.DeleteSetting(nivoSliderSettings, x => x.BgColor2, storeScope);
+
             if (model.Picture3Id_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Picture3Id, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Picture3Id, storeScope);
-            
+
             if (model.Text3_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Text3, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Text3, storeScope);
-            
+
             if (model.Link3_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Link3, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Link3, storeScope);
-            
+
+            if (model.BgColor3_OverrideForStore || storeScope == 0)
+                _settingService.SaveSetting(nivoSliderSettings, x => x.BgColor3, storeScope, false);
+            else if (storeScope > 0)
+                _settingService.DeleteSetting(nivoSliderSettings, x => x.BgColor3, storeScope);
+
             if (model.Picture4Id_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Picture4Id, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Picture4Id, storeScope);
-            
+
             if (model.Text4_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Text4, storeScope, false);
             else if (storeScope > 0)
@@ -184,6 +214,11 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Link4, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Link4, storeScope);
+
+            if (model.BgColor4_OverrideForStore || storeScope == 0)
+                _settingService.SaveSetting(nivoSliderSettings, x => x.BgColor4, storeScope, false);
+            else if (storeScope > 0)
+                _settingService.DeleteSetting(nivoSliderSettings, x => x.BgColor4, storeScope);
 
             if (model.Picture5Id_OverrideForStore || storeScope == 0)
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Picture5Id, storeScope, false);
@@ -199,7 +234,12 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 _settingService.SaveSetting(nivoSliderSettings, x => x.Link5, storeScope, false);
             else if (storeScope > 0)
                 _settingService.DeleteSetting(nivoSliderSettings, x => x.Link5, storeScope);
-            
+
+            if (model.BgColor5_OverrideForStore || storeScope == 0)
+                _settingService.SaveSetting(nivoSliderSettings, x => x.BgColor5, storeScope, false);
+            else if (storeScope > 0)
+                _settingService.DeleteSetting(nivoSliderSettings, x => x.BgColor5, storeScope);
+
             //now clear settings cache
             _settingService.ClearCache();
 
@@ -216,22 +256,27 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             model.Picture1Url = GetPictureUrl(nivoSliderSettings.Picture1Id);
             model.Text1 = nivoSliderSettings.Text1;
             model.Link1 = nivoSliderSettings.Link1;
+            model.BgColor1 = nivoSliderSettings.BgColor1;
 
             model.Picture2Url = GetPictureUrl(nivoSliderSettings.Picture2Id);
             model.Text2 = nivoSliderSettings.Text2;
             model.Link2 = nivoSliderSettings.Link2;
+            model.BgColor2 = nivoSliderSettings.BgColor2;
 
             model.Picture3Url = GetPictureUrl(nivoSliderSettings.Picture3Id);
             model.Text3 = nivoSliderSettings.Text3;
             model.Link3 = nivoSliderSettings.Link3;
+            model.BgColor3 = nivoSliderSettings.BgColor3;
 
             model.Picture4Url = GetPictureUrl(nivoSliderSettings.Picture4Id);
             model.Text4 = nivoSliderSettings.Text4;
             model.Link4 = nivoSliderSettings.Link4;
+            model.BgColor4 = nivoSliderSettings.BgColor4;
 
             model.Picture5Url = GetPictureUrl(nivoSliderSettings.Picture5Id);
             model.Text5 = nivoSliderSettings.Text5;
             model.Link5 = nivoSliderSettings.Link5;
+            model.BgColor5 = nivoSliderSettings.BgColor5;
 
             if (string.IsNullOrEmpty(model.Picture1Url) && string.IsNullOrEmpty(model.Picture2Url) &&
                 string.IsNullOrEmpty(model.Picture3Url) && string.IsNullOrEmpty(model.Picture4Url) &&

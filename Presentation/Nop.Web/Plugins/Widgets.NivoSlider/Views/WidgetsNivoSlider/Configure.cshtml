@@ -11,7 +11,7 @@
         <table class="adminContent">
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Picture1Id_OverrideForStore, model => model.Picture1Id, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Picture1Id_OverrideForStore, model => model.Picture1Id, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Picture1Id):
                 </td>
                 <td class="adminData">
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Text1_OverrideForStore, model => model.Text1, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Text1_OverrideForStore, model => model.Text1, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Text1):
                 </td>
                 <td class="adminData">
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Link1_OverrideForStore, model => model.Link1, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Link1_OverrideForStore, model => model.Link1, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Link1):
                 </td>
                 <td class="adminData">
@@ -39,16 +39,26 @@
                     @Html.ValidationMessageFor(model => model.Link1)
                 </td>
             </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.OverrideStoreCheckboxFor(model => model.BgColor1_OverrideForStore, model => model.BgColor1, Model.ActiveStoreScopeConfiguration)
+                    @Html.NopLabelFor(model => model.BgColor1):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.BgColor1)
+                    @Html.ValidationMessageFor(model => model.BgColor1)
+                </td>
+            </tr>
         </table>
     </fieldset>
     <br />
-    
+
     <fieldset>
         <legend><strong>@T("Plugins.Widgets.NivoSlider.Picture2")</strong></legend>
         <table class="adminContent">
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Picture2Id_OverrideForStore, model => model.Picture2Id, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Picture2Id_OverrideForStore, model => model.Picture2Id, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Picture2Id):
                 </td>
                 <td class="adminData">
@@ -58,7 +68,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Text2_OverrideForStore, model => model.Text2, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Text2_OverrideForStore, model => model.Text2, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Text2):
                 </td>
                 <td class="adminData">
@@ -68,7 +78,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Link2_OverrideForStore, model => model.Link2, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Link2_OverrideForStore, model => model.Link2, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Link2):
                 </td>
                 <td class="adminData">
@@ -76,16 +86,26 @@
                     @Html.ValidationMessageFor(model => model.Link2)
                 </td>
             </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.OverrideStoreCheckboxFor(model => model.BgColor1_OverrideForStore, model => model.BgColor2, Model.ActiveStoreScopeConfiguration)
+                    @Html.NopLabelFor(model => model.BgColor2):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.BgColor2)
+                    @Html.ValidationMessageFor(model => model.BgColor2)
+                </td>
+            </tr>
         </table>
     </fieldset>
     <br />
-    
+
     <fieldset>
         <legend><strong>@T("Plugins.Widgets.NivoSlider.Picture3")</strong></legend>
         <table class="adminContent">
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Picture3Id_OverrideForStore, model => model.Picture3Id, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Picture3Id_OverrideForStore, model => model.Picture3Id, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Picture3Id):
                 </td>
                 <td class="adminData">
@@ -95,7 +115,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Text3_OverrideForStore, model => model.Text3, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Text3_OverrideForStore, model => model.Text3, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Text3):
                 </td>
                 <td class="adminData">
@@ -105,12 +125,22 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Link3_OverrideForStore, model => model.Link3, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Link3_OverrideForStore, model => model.Link3, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Link3):
                 </td>
                 <td class="adminData">
                     @Html.EditorFor(model => model.Link3)
                     @Html.ValidationMessageFor(model => model.Link3)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.OverrideStoreCheckboxFor(model => model.BgColor3_OverrideForStore, model => model.BgColor3, Model.ActiveStoreScopeConfiguration)
+                    @Html.NopLabelFor(model => model.BgColor3):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.BgColor3)
+                    @Html.ValidationMessageFor(model => model.BgColor3)
                 </td>
             </tr>
         </table>
@@ -121,7 +151,7 @@
         <table class="adminContent">
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Picture4Id_OverrideForStore, model => model.Picture4Id, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Picture4Id_OverrideForStore, model => model.Picture4Id, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Picture4Id):
                 </td>
                 <td class="adminData">
@@ -131,7 +161,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Text4_OverrideForStore, model => model.Text4, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Text4_OverrideForStore, model => model.Text4, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Text4):
                 </td>
                 <td class="adminData">
@@ -141,12 +171,22 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Link4_OverrideForStore, model => model.Link4, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Link4_OverrideForStore, model => model.Link4, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Link4):
                 </td>
                 <td class="adminData">
                     @Html.EditorFor(model => model.Link4)
                     @Html.ValidationMessageFor(model => model.Link4)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.OverrideStoreCheckboxFor(model => model.BgColor4_OverrideForStore, model => model.BgColor4, Model.ActiveStoreScopeConfiguration)
+                    @Html.NopLabelFor(model => model.BgColor4):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.BgColor4)
+                    @Html.ValidationMessageFor(model => model.BgColor4)
                 </td>
             </tr>
         </table>
@@ -157,7 +197,7 @@
         <table class="adminContent">
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Picture5Id_OverrideForStore, model => model.Picture5Id, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Picture5Id_OverrideForStore, model => model.Picture5Id, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Picture5Id):
                 </td>
                 <td class="adminData">
@@ -167,7 +207,7 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Text5_OverrideForStore, model => model.Text5, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Text5_OverrideForStore, model => model.Text5, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Text5):
                 </td>
                 <td class="adminData">
@@ -177,12 +217,22 @@
             </tr>
             <tr>
                 <td class="adminTitle">
-                @Html.OverrideStoreCheckboxFor(model => model.Link5_OverrideForStore, model => model.Link5, Model.ActiveStoreScopeConfiguration)
+                    @Html.OverrideStoreCheckboxFor(model => model.Link5_OverrideForStore, model => model.Link5, Model.ActiveStoreScopeConfiguration)
                     @Html.NopLabelFor(model => model.Link5):
                 </td>
                 <td class="adminData">
                     @Html.EditorFor(model => model.Link5)
                     @Html.ValidationMessageFor(model => model.Link5)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.OverrideStoreCheckboxFor(model => model.BgColor5_OverrideForStore, model => model.BgColor5, Model.ActiveStoreScopeConfiguration)
+                    @Html.NopLabelFor(model => model.BgColor5):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.BgColor5)
+                    @Html.ValidationMessageFor(model => model.BgColor5)
                 </td>
             </tr>
         </table>
