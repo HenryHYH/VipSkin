@@ -1,0 +1,7 @@
+﻿.slider { position: relative; }
+.slider-wrapper { display: none; }
+.slider a { display: inline-block; }
+.slider img { vertical-align: top; width: 960px; }
+.slider .control-panel { position: absolute; left: 48%; bottom: 5px; }
+.slider .control-panel .node { width: 11px; height: 11px; margin: 5px; background: #0094ff; float: left; border-radius: 10px; border: 3px solid #0094ff; cursor: pointer; }
+.slider .control-panel .active { background: #fff; }

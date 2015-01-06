@@ -1,40 +1,30 @@
 ﻿@model Nop.Plugin.Widgets.NivoSlider.Models.PublicInfoModel
 @{
     Layout = "";
-
-    Html.AddScriptParts("~/Plugins/Widgets.NivoSlider/Scripts/jquery.nivo.slider.js");
-    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/nivo-slider.css");
-    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/themes/default/default.css");
+    Html.AddScriptParts("~/Plugins/Widgets.NivoSlider/Scripts/CustomSlider.js");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/CustomSlider.css");
 }
 @using Nop.Web.Framework.UI
-
-@helper RenderSliderLine(string pictureUrl, string text, string link, string bgColor, string dataTransition = "")
+@helper RenderSliderItem(string pictureUrl, string text, string link, string bgColor)
 {
-    if (!string.IsNullOrEmpty(pictureUrl))
+    if (!string.IsNullOrEmpty(pictureUrl) && !string.IsNullOrEmpty(link))
     {
-        if (!string.IsNullOrEmpty(link))
-        {
+        <div class="slider-wrapper" style="background-color:@(bgColor);">
             <a href="@link">
-                <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" data-bg-color="@bgColor" alt="" title="@text" />
+                <img src="@pictureUrl" alt="@text" title="@text" />
             </a>
-        }
-        else
-        {
-            <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" data-bg-color="@bgColor" alt="" title="@text" />
-        }
+        </div>
     }
 }
-<div class="slider-wrapper theme-default" id="nivo-slider-wrapper">
-    <div id="nivo-slider" class="nivoSlider">
-        @RenderSliderLine(Model.Picture1Url, Model.Text1, Model.Link1, Model.BgColor1)
-        @RenderSliderLine(Model.Picture2Url, Model.Text2, Model.Link2, Model.BgColor2)
-        @RenderSliderLine(Model.Picture3Url, Model.Text3, Model.Link3, Model.BgColor3, "slideInLeft")
-        @RenderSliderLine(Model.Picture4Url, Model.Text4, Model.Link4, Model.BgColor4)
-        @RenderSliderLine(Model.Picture5Url, Model.Text5, Model.Link5, Model.BgColor5)
-    </div>
+<div class="slider" id="divSlider">
+    @RenderSliderItem(Model.Picture1Url, Model.Text1, Model.Link1, Model.BgColor1)
+    @RenderSliderItem(Model.Picture2Url, Model.Text2, Model.Link2, Model.BgColor2)
+    @RenderSliderItem(Model.Picture3Url, Model.Text3, Model.Link3, Model.BgColor3)
+    @RenderSliderItem(Model.Picture4Url, Model.Text4, Model.Link4, Model.BgColor4)
+    @RenderSliderItem(Model.Picture5Url, Model.Text5, Model.Link5, Model.BgColor5)
 </div>
 <script type="text/javascript">
-    $(window).load(function () {
-        $('#nivo-slider').nivoSlider();
+    $(function () {
+        CustomSlider($("#divSlider"));
     });
 </script>
