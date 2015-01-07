@@ -69,7 +69,7 @@ td.fieldname { font-size: 12px; }
 .master-wrapper-main .center-2 { float: left; width: 710px; min-height: 500px; padding: 10px 20px; margin: 10px 0 10px 10px; display: inline; border-radius: 5px; background: none repeat scroll 0 0 #fff; }
 /* three column master page */
 .master-wrapper-main .leftside-3 { float: left; width: 190px; margin: 10px 0; display: inline; }
-.master-wrapper-main .center-3 { float: left; width: 510px; min-height: 500px; padding: 0 10px; margin: 10px; display: inline; overflow: hidden; border-radius: 5px; background: none repeat scroll 0 0 #fff; }
+.master-wrapper-main .center-3 { float: left; width: 520px; min-height: 500px; padding: 10px 20px; margin: 10px; display: inline; overflow: hidden; border-radius: 5px; background: none repeat scroll 0 0 #fff; }
 .master-wrapper-main .rightside-3 { float: right; width: 190px; margin: 10px 0; display: inline; }
 
 

@@ -58,7 +58,7 @@ namespace Nop.Admin.Infrastructure
         public void Execute()
         {
             //TODO remove 'CreatedOnUtc' ignore mappings because now presentation layer models have 'CreatedOn' property and core entities have 'CreatedOnUtc' property (distinct names)
-            
+
             //address
             Mapper.CreateMap<Address, AddressModel>()
                 .ForMember(dest => dest.AddressHtml, mo => mo.Ignore())
@@ -125,8 +125,8 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.LocaleStringResources, mo => mo.Ignore());
             //email account
             Mapper.CreateMap<EmailAccount, EmailAccountModel>()
-                .ForMember(dest => dest.Password, mo => mo.Ignore()) 
-                .ForMember(dest => dest.IsDefaultEmailAccount, mo => mo.Ignore()) 
+                .ForMember(dest => dest.Password, mo => mo.Ignore())
+                .ForMember(dest => dest.IsDefaultEmailAccount, mo => mo.Ignore())
                 .ForMember(dest => dest.SendTestEmailTo, mo => mo.Ignore())
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
             Mapper.CreateMap<EmailAccountModel, EmailAccount>()
@@ -149,7 +149,7 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.SentOn, mo => mo.Ignore())
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
             Mapper.CreateMap<QueuedEmailModel, QueuedEmail>()
-                .ForMember(dest => dest.CreatedOnUtc, dt=> dt.Ignore())
+                .ForMember(dest => dest.CreatedOnUtc, dt => dt.Ignore())
                 .ForMember(dest => dest.SentOnUtc, mo => mo.Ignore())
                 .ForMember(dest => dest.EmailAccount, mo => mo.Ignore())
                 .ForMember(dest => dest.EmailAccountId, mo => mo.Ignore())
@@ -167,16 +167,19 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.CreatedOnUtc, mo => mo.Ignore());
             //topcis
             Mapper.CreateMap<Topic, TopicModel>()
+                .ForMember(dest => dest.Body, mo => mo.MapFrom(source => source.Body.ToOriginalImageHtml()))
                 .ForMember(dest => dest.Url, mo => mo.Ignore())
                 .ForMember(dest => dest.SeName, mo => mo.MapFrom(src => src.GetSeName(0, true, false)))
                 .ForMember(dest => dest.Locales, mo => mo.Ignore())
                 .ForMember(dest => dest.AvailableStores, mo => mo.Ignore())
                 .ForMember(dest => dest.SelectedStoreIds, mo => mo.Ignore())
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
-            Mapper.CreateMap<TopicModel, Topic>();
+            Mapper.CreateMap<TopicModel, Topic>()
+                .ForMember(dest => dest.Body, mo => mo.MapFrom(source => source.Body.ToLazyLoadImageHtml()));
 
             //category
             Mapper.CreateMap<Category, CategoryModel>()
+                .ForMember(dest => dest.Description, mo => mo.MapFrom(source => source.Description.ToOriginalImageHtml()))
                 .ForMember(dest => dest.AvailableCategoryTemplates, mo => mo.Ignore())
                 .ForMember(dest => dest.Locales, mo => mo.Ignore())
                 .ForMember(dest => dest.Breadcrumb, mo => mo.Ignore())
@@ -190,6 +193,7 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.SelectedStoreIds, mo => mo.Ignore())
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
             Mapper.CreateMap<CategoryModel, Category>()
+                .ForMember(dest => dest.Description, mo => mo.MapFrom(source => source.Description.ToLazyLoadImageHtml()))
                 .ForMember(dest => dest.HasDiscountsApplied, mo => mo.Ignore())
                 .ForMember(dest => dest.CreatedOnUtc, mo => mo.Ignore())
                 .ForMember(dest => dest.UpdatedOnUtc, mo => mo.Ignore())
@@ -221,6 +225,8 @@ namespace Nop.Admin.Infrastructure
 
             //products
             Mapper.CreateMap<Product, ProductModel>()
+                .ForMember(dest => dest.ShortDescription, mo => mo.MapFrom(source => source.ShortDescription.ToOriginalImageHtml()))
+                .ForMember(dest => dest.FullDescription, mo => mo.MapFrom(source => source.FullDescription.ToOriginalImageHtml()))
                 .ForMember(dest => dest.ProductTypeName, mo => mo.Ignore())
                 .ForMember(dest => dest.AssociatedToProductId, mo => mo.Ignore())
                 .ForMember(dest => dest.AssociatedToProductName, mo => mo.Ignore())
@@ -256,6 +262,8 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.AvailableWarehouses, mo => mo.Ignore())
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
             Mapper.CreateMap<ProductModel, Product>()
+                .ForMember(dest => dest.ShortDescription, mo => mo.MapFrom(source => source.ShortDescription.ToLazyLoadImageHtml()))
+                .ForMember(dest => dest.FullDescription, mo => mo.MapFrom(source => source.FullDescription.ToLazyLoadImageHtml()))
                 .ForMember(dest => dest.ProductTags, mo => mo.Ignore())
                 .ForMember(dest => dest.CreatedOnUtc, mo => mo.Ignore())
                 .ForMember(dest => dest.UpdatedOnUtc, mo => mo.Ignore())
@@ -863,7 +871,7 @@ namespace Nop.Admin.Infrastructure
                 .ForMember(dest => dest.CustomProperties, mo => mo.Ignore());
             Mapper.CreateMap<ProductTemplateModel, ProductTemplate>();
         }
-        
+
         public int Order
         {
             get { return 0; }
