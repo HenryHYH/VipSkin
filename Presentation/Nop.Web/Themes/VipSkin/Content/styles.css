@@ -17,7 +17,7 @@ input, select { vertical-align: middle; }
 
 
 /* OTHER RESET STYLESHEET (HTML GENERAL) */
-body { text-align: center; font-family: "Microsoft YaHei","Helvetica Neue",Helvetica Neue,Helvetica,Hiragino Sans GB,tahoma,arial,sans-serif; font-size: 12px; background: none repeat scroll 0 0 #2B2922; color: #000; line-height: normal; }
+body { text-align: center; font-family: "Microsoft YaHei","Helvetica Neue",Helvetica Neue,Helvetica,Hiragino Sans GB,tahoma,arial,sans-serif; font-size: 12px; background: none repeat scroll 0 0 #242424; color: #000; line-height: normal; }
 body.popup-window { background: none; }
 a { color: #666; text-decoration: none; font-weight: normal; }
 a:hover { color: #B80709; text-decoration: underline; }
@@ -39,7 +39,7 @@ input { outline: none; }
 .a-right { text-align: right !important; }
 .page { }
 .page-body { }
-.page-body img { max-width: 100%; vertical-align: top; }
+.page-body img { max-width: 100%; height: auto; vertical-align: top; }
 .page-title { margin: 0 0 10px; overflow: hidden; width: 100%; }
 .page-title h1, .page-title h2 { padding: 5px 5px 5px 0; font-size: 20px; margin: 0; /*font-family: Arial,Helvetica,sans-serif;*/ font-weight: 400; color: #555; }
 .page-title .link-rss { float: right; margin: 10px 10px 0 0; background-image: url(images/ico-rss.gif); background-repeat: no-repeat; display: block; height: 14px; width: 14px; text-indent: -9999px; }
@@ -625,7 +625,6 @@ ul.language-list li:hover { cursor: pointer; }
 .vendor-list-page .vendor-list li { display: inline; }
 .vendor-list-page .vendor-list li a { text-decoration: none; margin: 0 2px 0 0; }
 .category-page .category-description, .manufacturer-page .manufacturer-description, .vendor-page .vendor-description { color: #555; font-size: 1.1em; }
-.category-page .category-description img { max-width: 100%; }
 .sub-category-grid, .manufacturer-grid { margin-left: auto; margin-right: auto; width: auto; margin-bottom: 15px; zoom: 1; }
 .sub-category-grid:after, .manufacturer-grid:after { content: "."; display: block; clear: both; height: 0; font-size: 0; line-height: 0; visibility: hidden; }
 .sub-category-grid a, .manufacturer-grid a { color: #555; font-size: 1.2em; font-weight: 700; }
