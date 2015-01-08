@@ -192,123 +192,60 @@ namespace Nop.Plugin.Payments.Tenpay
         /// <param name="postProcessPaymentRequest">Payment info required for an order processing</param>
         public void PostProcessPayment(PostProcessPaymentRequest postProcessPaymentRequest)
         {
-            if (false)
-            {
-                //string gateway = "https://www.tenpay.com/cooperate/gateway.do?";
-                string service = "create_direct_pay_by_user";
+            string out_trade_no = postProcessPaymentRequest.Order.Id.ToString();
+            decimal total_fee = postProcessPaymentRequest.Order.OrderTotal;
+            string subject = _storeContext.CurrentStore.Name;
+            string body = string.Format("{0}订单", _storeContext.CurrentStore.Name);
 
-                string seller_email = "";
-                string sign_type = "MD5";
-                string key = _tenpayPaymentSettings.Key;
-                string partner = _tenpayPaymentSettings.Partner;
-                string input_charset = "utf-8";
+            string notify_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Notify";
+            string return_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Return";
 
-                string show_url = "http://www.tenpay.com/";
+            //创建RequestHandler实例
+            RequestHandler reqHandler = new RequestHandler(System.Web.HttpContext.Current);
 
-                string out_trade_no = postProcessPaymentRequest.Order.Id.ToString();
-                string subject = _storeContext.CurrentStore.Name;
-                string body = "Order from " + _storeContext.CurrentStore.Name;
-                string total_fee = postProcessPaymentRequest.Order.OrderTotal.ToString("0.00", CultureInfo.InvariantCulture);
+            //初始化
+            reqHandler.init();
 
-                string notify_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Notify";
-                string return_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Return";
-                string[] para ={
-                               "service="+service,
-                               "partner=" + partner,
-                               "seller_email=" + seller_email,
-                               "out_trade_no=" + out_trade_no,
-                               "subject=" + subject,
-                               "body=" + body,
-                               "total_fee=" + total_fee,
-                               "show_url=" + show_url,
-                               "payment_type=1",
-                               "notify_url=" + notify_url,
-                               "return_url=" + return_url,
-                               "_input_charset=" + input_charset
-                           };
+            //设置密钥
+            reqHandler.SetKey(_tenpayPaymentSettings.Key);
+            reqHandler.SetGateUrl("https://gw.tenpay.com/gateway/pay.htm");
 
-                string aliay_url = CreatUrl(
-                    para,
-                    input_charset,
-                    key
-                    );
-                var post = new RemotePost();
-                post.FormName = "Tenpaysubmit";
-                post.Url = "https://www.tenpay.com/cooperate/gateway.do?_input_charset=utf-8";
-                post.Method = "POST";
+            //设置支付参数
+            reqHandler.SetParameter("partner", _tenpayPaymentSettings.Partner);		        //商户号
+            reqHandler.SetParameter("out_trade_no", out_trade_no);                          //商家订单号
+            reqHandler.SetParameter("total_fee", (total_fee * 100).ToString("N0").Replace(",", ""));//商品金额,以分为单位
+            reqHandler.SetParameter("return_url", return_url);                              //交易完成后跳转的URL
+            reqHandler.SetParameter("notify_url", notify_url);                              //接收财付通通知的URL
+            reqHandler.SetParameter("body", body);                                          //商品描述
+            reqHandler.SetParameter("bank_type", "DEFAULT");                                //银行类型(中介担保时此参数无效)
+            reqHandler.SetParameter("spbill_create_ip", _webHelper.GetCurrentIpAddress());  //用户的公网ip，不是商户服务器IP
+            reqHandler.SetParameter("fee_type", "1");                                       //币种，1人民币
+            reqHandler.SetParameter("subject", subject);                                    //商品名称(中介交易时必填)
 
-                post.Add("service", service);
-                post.Add("partner", partner);
-                post.Add("seller_email", seller_email);
-                post.Add("out_trade_no", out_trade_no);
-                post.Add("subject", subject);
-                post.Add("body", body);
-                post.Add("total_fee", total_fee);
-                post.Add("show_url", show_url);
-                post.Add("return_url", return_url);
-                post.Add("notify_url", notify_url);
-                post.Add("payment_type", "1");
-                post.Add("sign", aliay_url);
-                post.Add("sign_type", sign_type);
+            //系统可选参数
+            reqHandler.SetParameter("sign_type", "MD5");
+            reqHandler.SetParameter("service_version", "1.0");
+            reqHandler.SetParameter("input_charset", "UTF-8");
+            reqHandler.SetParameter("sign_key_index", "1");
 
-                post.Post();
-            }
-            else
-            {
-                string out_trade_no = postProcessPaymentRequest.Order.Id.ToString();
-                string product_name = "ProductName";
-                double money = 1;
-                string notify_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Notify";
-                string return_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentTenpay/Return";
-                string remark = "Test";
+            //业务可选参数
+            reqHandler.SetParameter("attach", "");                                          //附加数据，原样返回
+            reqHandler.SetParameter("product_fee", "0");                                    //商品费用，必须保证transport_fee + product_fee=total_fee
+            reqHandler.SetParameter("transport_fee", "0");                                  //物流费用，必须保证transport_fee + product_fee=total_fee
+            reqHandler.SetParameter("time_start", DateTime.Now.ToString("yyyyMMddHHmmss")); //订单生成时间，格式为yyyymmddhhmmss
+            reqHandler.SetParameter("time_expire", "");                                     //订单失效时间，格式为yyyymmddhhmmss
+            reqHandler.SetParameter("buyer_id", "");                                        //买方财付通账号
+            reqHandler.SetParameter("goods_tag", "");                                       //商品标记
+            reqHandler.SetParameter("trade_mode", "1");                                     //交易模式，1即时到账(默认)，2中介担保，3后台选择（买家进支付中心列表选择）
+            reqHandler.SetParameter("transport_desc", "");                                  //物流说明
+            reqHandler.SetParameter("trans_type", "1");                                     //交易类型，1实物交易，2虚拟交易
+            reqHandler.SetParameter("agentid", "");                                         //平台ID
+            reqHandler.SetParameter("agent_type", "");                                      //代理模式，0无代理(默认)，1表示卡易售模式，2表示网店模式
+            reqHandler.SetParameter("seller_id", "");                                       //卖家商户号，为空则等同于partner
 
-                //创建RequestHandler实例
-                RequestHandler reqHandler = new RequestHandler(System.Web.HttpContext.Current);
-
-                //初始化
-                reqHandler.init();
-
-                //设置密钥
-                reqHandler.SetKey(_tenpayPaymentSettings.Key);
-                reqHandler.SetGateUrl("https://gw.tenpay.com/gateway/pay.htm");
-
-                //设置支付参数
-                reqHandler.SetParameter("partner", _tenpayPaymentSettings.Partner);		        //商户号
-                reqHandler.SetParameter("out_trade_no", out_trade_no);                          //商家订单号
-                reqHandler.SetParameter("total_fee", (money * 100).ToString());			        //商品金额,以分为单位
-                reqHandler.SetParameter("return_url", return_url);                              //交易完成后跳转的URL
-                reqHandler.SetParameter("notify_url", notify_url);                              //接收财付通通知的URL
-                reqHandler.SetParameter("body", remark);                                        //商品描述
-                reqHandler.SetParameter("bank_type", "DEFAULT");                                //银行类型(中介担保时此参数无效)
-                reqHandler.SetParameter("spbill_create_ip", _webHelper.GetCurrentIpAddress());  //用户的公网ip，不是商户服务器IP
-                reqHandler.SetParameter("fee_type", "1");                                       //币种，1人民币
-                reqHandler.SetParameter("subject", product_name);                               //商品名称(中介交易时必填)
-
-                //系统可选参数
-                reqHandler.SetParameter("sign_type", "MD5");
-                reqHandler.SetParameter("service_version", "1.0");
-                reqHandler.SetParameter("input_charset", "UTF-8");
-                reqHandler.SetParameter("sign_key_index", "1");
-
-                //业务可选参数
-                reqHandler.SetParameter("attach", "");                                          //附加数据，原样返回
-                reqHandler.SetParameter("product_fee", "0");                                    //商品费用，必须保证transport_fee + product_fee=total_fee
-                reqHandler.SetParameter("transport_fee", "0");                                  //物流费用，必须保证transport_fee + product_fee=total_fee
-                reqHandler.SetParameter("time_start", DateTime.Now.ToString("yyyyMMddHHmmss")); //订单生成时间，格式为yyyymmddhhmmss
-                reqHandler.SetParameter("time_expire", "");                                     //订单失效时间，格式为yyyymmddhhmmss
-                reqHandler.SetParameter("buyer_id", "");                                        //买方财付通账号
-                reqHandler.SetParameter("goods_tag", "");                                       //商品标记
-                reqHandler.SetParameter("trade_mode", "1");                                     //交易模式，1即时到账(默认)，2中介担保，3后台选择（买家进支付中心列表选择）
-                reqHandler.SetParameter("transport_desc", "");                                  //物流说明
-                reqHandler.SetParameter("trans_type", "1");                                     //交易类型，1实物交易，2虚拟交易
-                reqHandler.SetParameter("agentid", "");                                         //平台ID
-                reqHandler.SetParameter("agent_type", "");                                      //代理模式，0无代理(默认)，1表示卡易售模式，2表示网店模式
-                reqHandler.SetParameter("seller_id", "");                                       //卖家商户号，为空则等同于partner
-
-                //获取请求带参数的url
-                string requestUrl = reqHandler.GetRequestURL();
-                _httpContext.Response.Redirect(requestUrl);
-            }
+            //获取请求带参数的url
+            string requestUrl = reqHandler.GetRequestURL();
+            _httpContext.Response.Redirect(requestUrl);
         }
 
         /// <summary>

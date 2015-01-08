@@ -200,7 +200,7 @@ namespace Nop.Plugin.Payments.AliPay
 
             string out_trade_no = postProcessPaymentRequest.Order.Id.ToString();
             string subject = _storeContext.CurrentStore.Name;
-            string body = "Order from " + _storeContext.CurrentStore.Name;
+            string body = _storeContext.CurrentStore.Name + "¶©µ¥";
             string total_fee = postProcessPaymentRequest.Order.OrderTotal.ToString("0.00", CultureInfo.InvariantCulture);
 
             string notify_url = _webHelper.GetStoreLocation(false) + "Plugins/PaymentAliPay/Notify";
