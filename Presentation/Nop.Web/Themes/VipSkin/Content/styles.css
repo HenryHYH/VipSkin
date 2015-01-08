@@ -1006,6 +1006,7 @@ ul.language-list li:hover { cursor: pointer; }
 .product-essential { overflow: hidden; border: 1px solid #d3d3d3; background: #fcfcfc; border-radius: 4px; padding: 10px; }
 .product-details-page .gallery { float: left; width: 400px; margin: 5px; padding: 10px; border: 1px solid #eee; border-radius: 4px; }
 .product-details-page .gallery .picture { }
+.product-details-page .gallery .picture .zoomWrapperImage img { max-width: none; }
 .product-details-page .gallery .picture-thumbs { margin-top: 10px; }
 .product-details-page .gallery .picture-thumbs .zoomThumbActive { border: 2px solid #ff0000; }
 .product-details-page .gallery .picture-thumbs a { display: inline-block; margin-right: 3px; border: 2px solid #ccc; }
