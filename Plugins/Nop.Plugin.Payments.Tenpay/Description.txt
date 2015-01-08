@@ -1,0 +1,8 @@
+﻿Group: Payment methods
+FriendlyName: 财付通
+SystemName: Payments.Tenpay
+Version: 1.00
+SupportedVersions: 3.50
+Author: Henry
+DisplayOrder: 1
+FileName: Nop.Plugin.Payments.Tenpay.dll

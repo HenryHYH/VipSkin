@@ -30,3 +30,4 @@ Widgets.NivoSlider
 Payments.AliPay
 Payments.BankTransfer
 Widgets.ProductDetailReview
+Payments.Tenpay
