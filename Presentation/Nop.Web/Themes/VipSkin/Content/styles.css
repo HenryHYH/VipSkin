@@ -569,7 +569,7 @@ ul.language-list li:hover { cursor: pointer; }
 .product-grid:after { content: "."; display: block; clear: both; height: 0; font-size: 0; line-height: 0; visibility: hidden; }
 .product-grid .item-box { float: left; padding: 5px; text-align: center; vertical-align: text-top; }
 .product-grid .item-box:hover { background: #F9F9F9; }
-.product-grid .product-item { text-align: left; margin: 0; padding: 0; width: 155px; height: 270px; }
+.product-grid .product-item { text-align: left; margin: 0; padding: 0; width: 167px; height: 270px; }
 .product-grid .product-item .product-title { font-weight: normal; font-size: 12px; padding: 0; }
 .product-grid .product-item .product-title a { display: block; height: auto; line-height: 1.3em; overflow: hidden; padding: 4px 10px 8px 0; }
 .product-grid .product-item .details { }
@@ -590,13 +590,13 @@ ul.language-list li:hover { cursor: pointer; }
 
 
 /* PRODUCTS IN LINES - TEMPLATE */
-.product-list { width: auto; margin: 0 auto; padding: 0; list-style-type: none; }
-.product-list .item-box { text-align: left; clear: both; position: relative; margin-bottom: 10px; }
+.product-list { width: auto; margin: 0 auto; padding: 10px 10px 0; list-style-type: none; background: #fff; border: 1px solid #ccc; border-radius: 4px; }
+.product-list .item-box { text-align: left; clear: both; position: relative; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
 .product-list .item-box:hover { background: #F9F9F9; }
 .product-list .product-item { width: auto; margin-top: 10px; position: relative; zoom: 1; }
 .product-list .product-item:after { content: "."; display: block; clear: both; height: 0; font-size: 0; line-height: 0; visibility: hidden; }
 .product-list .product-item .product-title { font-weight: 700; font-size: 12px; padding-left: 10px; margin-top: 10px; }
-.product-list .product-item .product-title a { font-weight: 700; display: block; height: auto; line-height: 1.3em; overflow: hidden; padding: 4px 10px 8px 0; }
+.product-list .product-item .product-title a { font-weight: 700; display: block; height: auto; line-height: 1.3em; overflow: hidden; padding: 4px 10px 8px 5px; }
 .product-list .product-item .details { }
 .product-list .product-item .product-rating-box { padding: 0 0 0 10px; margin: 0px 100px 0 140px; }
 .product-list .product-item .picture { float: left; margin: 10px; }

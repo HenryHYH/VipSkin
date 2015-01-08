@@ -65,7 +65,7 @@ namespace Nop.Web.Framework
 
                     //default tab
                     tabStrip.AppendLine("<li class='k-state-active'>");
-                    tabStrip.AppendLine("Standard");
+                    tabStrip.AppendLine("通用");
                     tabStrip.AppendLine("</li>");
 
                     foreach (var locale in helper.ViewData.Model.Locales)
