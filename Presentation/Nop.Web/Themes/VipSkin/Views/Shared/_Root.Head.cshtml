@@ -14,9 +14,15 @@
     Html.AppendScriptParts("~/Scripts/jquery.validate.min.js");
     Html.AppendScriptParts("~/Scripts/jquery-1.10.2.min.js");
 
+    // Font awesome
+    Html.AppendCssFileParts("~/Content/font-awesome/css/font-awesome.min.css");
+
     // image lazy load
     Html.AppendScriptParts(ResourceLocation.Foot, "~/Scripts/jquery.lazyload.min.js");
     Html.AppendScriptParts(ResourceLocation.Foot, "~/Scripts/public.image.js");
+
+    // scroll top
+    Html.AppendScriptParts(ResourceLocation.Foot, "~/Scripts/public.fixedright.js");
 
     //X-UA-Compatible tag
     var commonSettings = EngineContext.Current.Resolve<CommonSettings>();
