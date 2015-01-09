@@ -38,19 +38,18 @@ namespace Nop.Plugin.Payments.Tenpay.Library
 
         private string charset = "gb2312";
 
-
         //获取服务器通知数据方式，进行参数获取
         public ClientResponseHandler()
         {
             parameters = new Hashtable();
         }
 
-        public string getContent()
+        public string GetContent()
         {
             return this.content;
         }
 
-        public virtual void setContent(string content)
+        public virtual void SetContent(string content)
         {
             this.content = content;
             XmlDocument xmlDoc = new XmlDocument();
@@ -60,27 +59,27 @@ namespace Nop.Plugin.Payments.Tenpay.Library
 
             foreach (XmlNode xnf in xnl)
             {
-                this.setParameter(xnf.Name, xnf.InnerXml);
+                this.SetParameter(xnf.Name, xnf.InnerXml);
             }
         }
 
         /** 获取密钥 */
-        public string getKey()
+        public string GetKey()
         { return key; }
 
         /** 设置密钥 */
-        public void setKey(string key)
+        public void SetKey(string key)
         { this.key = key; }
 
         /** 获取参数值 */
-        public string getParameter(string parameter)
+        public string GetParameter(string parameter)
         {
             string s = (string)parameters[parameter];
             return (null == s) ? "" : s;
         }
 
         /** 设置参数值 */
-        public void setParameter(string parameter, string parameterValue)
+        public void SetParameter(string parameter, string parameterValue)
         {
             if (parameter != null && parameter != "")
             {
@@ -95,7 +94,7 @@ namespace Nop.Plugin.Payments.Tenpay.Library
 
         /** 是否财付通签名,规则是:按参数名称a-z排序,遇到空值的参数不参加签名。 
          * @return boolean */
-        public virtual Boolean isTenpaySign()
+        public virtual bool IsTenpaySign()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -112,35 +111,35 @@ namespace Nop.Plugin.Payments.Tenpay.Library
                 }
             }
 
-            sb.Append("key=" + this.getKey());
-            string sign = MD5Util.GetMD5(sb.ToString(), getCharset()).ToLower();
+            sb.Append("key=" + this.GetKey());
+            string sign = MD5Util.GetMD5(sb.ToString(), GetCharset()).ToLower();
 
             //debug信息
-            this.setDebugInfo(sb.ToString() + " => sign:" + sign);
-            return getParameter("sign").ToLower().Equals(sign);
+            this.SetDebugInfo(sb.ToString() + " => sign:" + sign);
+            return GetParameter("sign").ToLower().Equals(sign);
         }
 
         /** 获取debug信息 */
-        public string getDebugInfo()
+        public string GetDebugInfo()
         { return debugInfo; }
 
         /** 设置debug信息 */
-        protected void setDebugInfo(String debugInfo)
+        protected void SetDebugInfo(String debugInfo)
         { this.debugInfo = debugInfo; }
 
-        protected virtual string getCharset()
+        protected virtual string GetCharset()
         {
             return this.charset;
         }
 
-        public void setCharset(String charset)
+        public void SetCharset(string charset)
         {
             this.charset = charset;
         }
 
         /** 是否财付通签名,规则是:按参数名称a-z排序,遇到空值的参数不参加签名。 
          * @return boolean */
-        public virtual Boolean _isTenpaySign(ArrayList akeys)
+        public virtual bool _isTenpaySign(ArrayList akeys)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -154,12 +153,12 @@ namespace Nop.Plugin.Payments.Tenpay.Library
                 }
             }
 
-            sb.Append("key=" + this.getKey());
-            string sign = MD5Util.GetMD5(sb.ToString(), getCharset()).ToLower();
+            sb.Append("key=" + this.GetKey());
+            string sign = MD5Util.GetMD5(sb.ToString(), GetCharset()).ToLower();
 
             //debug信息
-            this.setDebugInfo(sb.ToString() + " => sign:" + sign);
-            return getParameter("sign").ToLower().Equals(sign);
+            this.SetDebugInfo(sb.ToString() + " => sign:" + sign);
+            return GetParameter("sign").ToLower().Equals(sign);
         }
     }
 }

@@ -204,7 +204,7 @@ namespace Nop.Plugin.Payments.Tenpay
             RequestHandler reqHandler = new RequestHandler(System.Web.HttpContext.Current);
 
             //≥ı ºªØ
-            reqHandler.init();
+            reqHandler.Init();
 
             //…Ë÷√√‹‘ø
             reqHandler.SetKey(_tenpayPaymentSettings.Key);

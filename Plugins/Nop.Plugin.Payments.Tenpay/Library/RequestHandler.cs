@@ -34,7 +34,7 @@ namespace Nop.Plugin.Payments.Tenpay.Library
         protected HttpContext httpContext;
 
         /** ³õÊ¼»¯º¯Êý¡£*/
-        public virtual void init()
+        public virtual void Init()
         {
             //nothing to do
         }

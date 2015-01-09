@@ -87,57 +87,57 @@ namespace Nop.Plugin.Payments.Tenpay.Library
         }
 
         //设置请求内容
-        public void setReqContent(string reqContent)
+        public void SetReqContent(string reqContent)
         {
             this.reqContent = reqContent;
         }
 
         //获取结果内容
-        public string getResContent()
+        public string GetResContent()
         {
             return this.resContent;
         }
 
         //设置请求方法post或者get	
-        public void setMethod(string method)
+        public void SetMethod(string method)
         {
             this.method = method;
         }
 
         //获取错误信息
-        public string getErrInfo()
+        public string GetErrInfo()
         {
             return this.errInfo;
         }
 
         //设置证书信息
-        public void setCertInfo(string certFile, string certPasswd)
+        public void SetCertInfo(string certFile, string certPasswd)
         {
             this.certFile = certFile;
             this.certPasswd = certPasswd;
         }
 
         //设置ca
-        public void setCaInfo(string caFile)
+        public void SetCaInfo(string caFile)
         {
             this.caFile = caFile;
         }
 
         //设置超时时间,以秒为单位
 
-        public void setTimeOut(int timeOut)
+        public void SetTimeOut(int timeOut)
         {
             this.timeOut = timeOut;
         }
 
 
         //获取http状态码
-        public int getResponseCode()
+        public int GetResponseCode()
         {
             return this.responseCode;
         }
 
-        public void setCharset(string charset)
+        public void SetCharset(string charset)
         {
             this.charset = charset;
         }
@@ -149,7 +149,7 @@ namespace Nop.Plugin.Payments.Tenpay.Library
         }
 
         //执行http调用
-        public bool call()
+        public bool Call()
         {
             StreamReader sr = null;
             HttpWebResponse wr = null;
