@@ -1,8 +1,0 @@
-Group: Payment methods
-FriendlyName: 银行转账
-SystemName: Payments.BankTransfer
-Version: 1.00
-SupportedVersions: 3.50
-Author: Henry
-DisplayOrder: 2
-FileName: Nop.Plugin.Payments.BankTransfer.dll

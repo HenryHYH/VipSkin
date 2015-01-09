@@ -1,8 +1,0 @@
-﻿Group: Widgets
-FriendlyName: Product detail review
-SystemName: Widgets.ProductDetailReview
-Version: 1.00
-SupportedVersions: 3.50
-Author: Henry
-DisplayOrder: 1
-FileName: Nop.Plugin.Widgets.ProductDetailReview.dll
