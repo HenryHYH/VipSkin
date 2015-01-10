@@ -1360,7 +1360,7 @@ pre { white-space: pre-wrap; white-space: normal; word-wrap: break-word; }
 .csharpcode .lnum { color: #606060; }
 
 /* Fixed right */
-.fixed-right { text-align: center; position: fixed; right: 50px; bottom: 50px; }
+.fixed-right { text-align: center; position: fixed; right: 5px; bottom: 50px; }
 .fixed-right .icon { margin-bottom: 8px; background: #ddd; border: 3px solid #ddd; color: #333; border-radius: 4px; cursor: pointer; float: right; clear: both; font-size: 30px; }
 .fixed-right .icon:hover { color: #B80709; background: #fff; border-color: #fff; width: auto; }
 .fixed-right .icon .pop { display: none; float: left; margin: 10px 5px 0 10px; font-size: 17px; font-weight: bold; }
