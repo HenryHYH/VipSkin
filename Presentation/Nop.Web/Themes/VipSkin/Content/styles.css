@@ -1360,11 +1360,17 @@ pre { white-space: pre-wrap; white-space: normal; word-wrap: break-word; }
 .csharpcode .lnum { color: #606060; }
 
 /* Fixed right */
-.fixed-right { width: 50px; text-align: center; position: fixed; right: 50px; bottom: 50px; }
-.fixed-right .icon { margin-bottom: 8px; background: #ddd; border: 3px solid #ddd; color: #333; border-radius: 4px; cursor: pointer; font-size: 35px; }
-.fixed-right .icon:hover { color: #B80709; background: #fff; border-color: #fff; }
+.fixed-right { text-align: center; position: fixed; right: 50px; bottom: 50px; }
+.fixed-right .icon { margin-bottom: 8px; background: #ddd; border: 3px solid #ddd; color: #333; border-radius: 4px; cursor: pointer; float: right; clear: both; font-size: 30px; }
+.fixed-right .icon:hover { color: #B80709; background: #fff; border-color: #fff; width: auto; }
+.fixed-right .icon .pop { display: none; float: left; margin: 10px 5px 0 10px; font-size: 17px; font-weight: bold; }
+.fixed-right .icon:hover .pop { display: inline; }
+.fixed-right .icon .fa { width: 40px; }
 .fixed-right .icon a { color: #333; }
 .fixed-right .icon a:hover { color: #B80709; }
 .fixed-right .icon-hide { display: none; }
 .fixed-right .icon-scroll-top { }
 .fixed-right .icon-home { }
+.fixed-right .icon-phone { }
+.fixed-right .icon-weibo { }
+.fixed-right .icon-qq, .fixed-right .icon-weixin { display: none; }
