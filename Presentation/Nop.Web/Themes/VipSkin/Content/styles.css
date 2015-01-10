@@ -1372,5 +1372,5 @@ pre { white-space: pre-wrap; white-space: normal; word-wrap: break-word; }
 .fixed-right .icon-scroll-top { }
 .fixed-right .icon-home { }
 .fixed-right .icon-phone { }
-.fixed-right .icon-weibo { }
-.fixed-right .icon-qq, .fixed-right .icon-weixin { display: none; }
+.fixed-right .icon-chat { }
+.fixed-right .icon-weibo, .fixed-right .icon-qq, .fixed-right .icon-weixin { display: none; }
